@@ -63,17 +63,18 @@ namespace WindowsFormsApp1
 
             //XmlNodeList xmlList;
 
+
             TxtHostName.Text = InfoGlobal.HostName; //HostName
             TxtSenha.Text = InfoGlobal.Password; //Password
             TxtLogin.Text = InfoGlobal.Login; //Login
 
-            //string password = DocXml.ChildNodes[0].ChildNodes[0].InnerText; //Login
-            //string hostname = DocXml.ChildNodes[0].ChildNodes[1].InnerText; //Password
-            //string login = DocXml.ChildNodes[0].ChildNodes[2].InnerText; //HostName
+            string password = DocXml.ChildNodes[0].ChildNodes[0].InnerText; //Login
+            string hostname = DocXml.ChildNodes[0].ChildNodes[1].InnerText; //Password
+            string login = DocXml.ChildNodes[0].ChildNodes[2].InnerText; //HostName
 
-            //string passwordecrypt = Encryption.Decrypt(password, @"Valadao");
-            //string logindecrypt = Encryption.Decrypt(login, @"Valadao");
-            //string hostnamedecrypt = Encryption.Decrypt(hostname, @"Valadao");
+            string passwordecrypt = Encryption.Decrypt(password, @"Valadao");
+            string logindecrypt = Encryption.Decrypt(login, @"Valadao");
+            string hostnamedecrypt = Encryption.Decrypt(hostname, @"Valadao");
 
         }
 

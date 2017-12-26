@@ -46,13 +46,17 @@ namespace WindowsFormsApp1
                     catch (Exception e)
                     {
                         MessageBox.Show("Arquivo incorreto, selecione o xml correto");
-
-
+                        
                     }
 
                 }
+                
 
+            }
 
+            else
+            {
+                DocXml.Load(fileXml);
             }
 
             InitializeComponent();
@@ -62,8 +66,7 @@ namespace WindowsFormsApp1
         {
 
             //XmlNodeList xmlList;
-
-
+            
             TxtHostName.Text = InfoGlobal.HostName; //HostName
             TxtSenha.Text = InfoGlobal.Password; //Password
             TxtLogin.Text = InfoGlobal.Login; //Login
@@ -84,9 +87,9 @@ namespace WindowsFormsApp1
 
             if (result == DialogResult.Yes)
             {
-                DocXml.ChildNodes[1].ChildNodes[0].InnerText = TxtLogin.Text; //Login
-                DocXml.ChildNodes[1].ChildNodes[1].InnerText = TxtSenha.Text; //Password
-                DocXml.ChildNodes[1].ChildNodes[2].InnerText = TxtHostName.Text; //HostName
+                DocXml.ChildNodes[0].ChildNodes[0].InnerText = TxtLogin.Text; //Login
+                DocXml.ChildNodes[0].ChildNodes[1].InnerText = TxtSenha.Text; //Password
+                DocXml.ChildNodes[0].ChildNodes[2].InnerText = TxtHostName.Text; //HostName
 
                 //Criptografar os dados do formulario
                 string passwordencrypt = Encryption.Encrypt(TxtSenha.Text, @"Valadao");
@@ -94,12 +97,17 @@ namespace WindowsFormsApp1
                 string hostnamencrypt = Encryption.Encrypt(TxtHostName.Text, @"Valadao");
 
                 //Salvar no xml o dado criptografado
-                DocXml.ChildNodes[1].ChildNodes[0].InnerText = loginencrypt;
-                DocXml.ChildNodes[1].ChildNodes[1].InnerText = passwordencrypt;
-                DocXml.ChildNodes[1].ChildNodes[2].InnerText = hostnamencrypt;
+                DocXml.ChildNodes[0].ChildNodes[0].InnerText = loginencrypt;
+                DocXml.ChildNodes[0].ChildNodes[1].InnerText = passwordencrypt;
+                DocXml.ChildNodes[0].ChildNodes[2].InnerText = hostnamencrypt;
 
                 //Salvando o arquivo
-                DocXml.Save(@"C:\Users\Wesley\Desktop\DocXml.xml");
+                DocXml.Save(fileXml);
+
+                MessageBox.Show("Conexão ben sucedida");
+
+                Close();
+                
             }
         }
 
